@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
 # Display PID along with process name containing bash
 
-for pid in /proc/*/; do
-  pid=${pid%*/}
-  pid=${pid##*/}
-
-  # Check if the process name contains the word "bash"
-  if [[ -f "/proc/$pid/cmdline" && $(cat "/proc/$pid/cmdline" | tr '\0' ' ' | grep -q bash) ]]; then
-    # Display the PID and name of the process
-    echo "$pid $(cat /proc/$pid/comm)"
-  fi
-done
+pgrep -l bash
