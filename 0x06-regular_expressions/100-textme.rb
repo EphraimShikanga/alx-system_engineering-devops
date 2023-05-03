@@ -1,14 +1,9 @@
 #!/usr/bin/env ruby
 
-logfile = ARGV[0]
+log_file = ARGV[0]
 
-File.foreach(logfile) do |line|
-  match = line.match(/(\w+),\s*(\w+),\s*\[([^\]]+)\]/)
-  if match
-    SENDER = match[1]
-    RECEIVER = match[2]
-    FLAGS = match[3]
-     puts "#{SENDER},#{RECEIVER},#{FLAGS}"
+File.foreach(log_file) do |line|
+  if line =~ /(?<direction>Sent|Receive) SMS.*?\[from:(?<sender>.*?)\].*?\[to:(?<receiver>.*?)\].*?\[flags:(?<flags>.*?)\]/
+    puts "#{Regexp.last_match[:sender]},#{Regexp.last_match[:receiver]},#{Regexp.last_match[:flags]}"
   end
 end
-
