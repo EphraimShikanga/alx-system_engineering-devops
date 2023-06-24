@@ -1,0 +1,1 @@
+puppet_management_config
