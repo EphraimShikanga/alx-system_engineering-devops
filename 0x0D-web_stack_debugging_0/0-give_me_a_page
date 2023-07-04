@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Script: fix_docker_container.sh
+
+# Start the Docker container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Check the Docker container status
+docker ps
+
+# Connect to the Docker container
+docker exec -it 5048125ecaa3 /bin/bash
+
+# Edit the Apache configuration file
+# vi /etc/apache2/sites-available/000-default.conf
+# Update the DocumentRoot to /var/www/html
+# Save the file and exit the text editor
+# Create the index.html file
+echo "Hello Holberton" > /var/www/html/index.html
+
+service apache2 restart
+
+exit
