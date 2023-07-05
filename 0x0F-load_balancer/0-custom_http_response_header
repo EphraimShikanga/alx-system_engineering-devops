@@ -86,5 +86,5 @@ echo "$server_config" | sudo dd status=none of=/etc/nginx/sites-enabled/default
 if [ "$(pgrep -c nginx)" -le 0 ]; then
 	sudo service nginx start
 else
-	sudo service nginx restart
+	sudo systemctl restart nginx
 fi
