@@ -1,0 +1,31 @@
+#!/bin/env bash
+#A script that displays information about subdomains
+
+# Function to display subdomain info
+display_subdomain() {
+  subdomain=$1
+  dest=$(dig +short "${subdomain}"."${domain}")
+  type=$(dig "${subdomain}"."${domain}" +nostats +nocomments +nocmd | awk -F '"' '/IN/ {print $4}')
+
+  echo "The subdomain ${subdomain} is a ${type} record and points to ${dest}"  
+}
+
+# Check input
+if [ $# -lt 1 ]; then
+  echo "Usage: ${0} <domain> [subdomain]"
+  exit 1
+fi
+
+domain=$1
+shift
+
+# Display info for default subdomains if no subdomain specified
+if [ $# -eq 0 ]; then
+  display_subdomain www
+  display_subdomain lb-01
+  display_subdomain web-01 
+  display_subdomain web-02
+else
+  subdomain=$1
+  display_subdomain "${subdomain}"
+fi
