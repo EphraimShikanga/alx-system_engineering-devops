@@ -3,8 +3,8 @@
 # Function to display subdomain info
 display_subdomain() {
   subdomain=$1
-  dest=$(dig +short ${subdomain}.${domain})
-  type=$(dig ${subdomain}.${domain} +nostats +nocomments +nocmd | awk -F '"' '/IN/ {print $4}')
+  dest=$(dig +short "${subdomain}"."${domain}")
+  type=$(dig "${subdomain}"."${domain}" +nostats +nocomments +nocmd | awk -F '"' '/IN/ {print $4}')
 
   echo "The subdomain ${subdomain} is a ${type} record and points to ${dest}"  
 }
@@ -26,5 +26,5 @@ if [ $# -eq 0 ]; then
   display_subdomain web-02
 else
   subdomain=$1
-  display_subdomain ${subdomain}
+  display_subdomain "${subdomain}"
 fi
