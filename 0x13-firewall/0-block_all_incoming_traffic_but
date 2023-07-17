@@ -1,0 +1,17 @@
+# Default deny all incoming 
+ufw default deny incoming
+
+# Allow SSH
+ufw allow 22/tcp
+
+# Allow HTTPS 
+ufw allow 443/tcp
+
+# Allow HTTP
+ufw allow 80/tcp
+
+# Enable firewall
+ufw enable
+
+# Check rules
+ufw status
