@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
+# Generates a MySQL dump and creates a compressed archive out of it
 
-purple='\e[0;35m'
-green='\e[1;32m'
-reset='\033[0m'
-
-# Check if password argument is provided
-if [[ $# -eq 0 ]]; then
-    echo -e "\n"	
-    echo -e "${brown}Usage: $0 <mysql_password>${reset}\n"
-    exit 1
-fi
-
-current_date=$(date +'%d-%m-%Y')
-archive_name="$current_date.tar.gz"
-
-# Generate MySQL dump
 mysqldump -uroot -p"$1" --all-databases > backup.sql
-tar -czf "$archive_name" backup.sql
-#echo -e "${green}MySQL backup created: $archive_name${reset}\n"
+tar -cvzf $(date +%d-%m-%Y).tar.gz backup.sql
