@@ -15,6 +15,6 @@ current_date=$(date +'%d-%m-%Y')
 archive_name="$current_date.tar.gz"
 
 # Generate MySQL dump
-mysqldump -u root -p"$1" --all-databases > backup.sql
-tar -czvf "$archive_name" backup.sql
+mysqldump -uroot -p"$1" --all-databases > backup.sql
+tar -czf "$archive_name" backup.sql
 #echo -e "${green}MySQL backup created: $archive_name${reset}\n"
