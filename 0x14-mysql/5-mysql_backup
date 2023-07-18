@@ -1,0 +1,25 @@
+#!/bin/bash
+
+purple='\e[0;35m'
+green='\e[1;32m'
+reset='\033[0m'
+
+# Check if password argument is provided
+if [[ $# -eq 0 ]]; then
+    echo -e "\n"	
+    echo -e "${brown}Usage: $0 <mysql_password>${reset}\n"
+    exit 1
+fi
+
+password="$1"
+
+current_date=$(date +'%d-%m-%Y')
+dump_file="backup.sql"
+archive_name="$current_date.tar.gz"
+
+# Generate MySQL dump
+mysqldump -u root -p"$password" --all-databases > "$dump_file"
+tar -czvf "$archive_name" "$dump_file"
+
+echo -e "${green}MySQL backup created: $archive_name${reset}\n"
+
