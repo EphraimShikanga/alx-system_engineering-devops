@@ -35,19 +35,13 @@ log-error       = /var/log/mysql/error.log
 # Server ID (unique ID for replication)
 server-id = 2
 
-# Log file and position for replication
-relay-log = mysql-relay-bin
-relay-log-index = mysql-relay-bin.index
+relay-log       = /var/log/mysql/mysql-relay-bin.log
+log_bin         = /var/log/mysql/mysql-bin.log
 
 # Replication settings
 replicate-do-db = tyrell_corp
 
-# Master replication connection
-master-host = 107.23.102.55
-master-password = es
-master-port = 3306
-
 # By default we only accept connections from localhost
-bind-address    = 127.0.0.1
+#bind-address   = 127.0.0.1
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
