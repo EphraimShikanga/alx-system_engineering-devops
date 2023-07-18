@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 purple='\e[0;35m'
 green='\e[1;32m'
@@ -11,15 +11,10 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-password="$1"
-
 current_date=$(date +'%d-%m-%Y')
-dump_file="backup.sql"
 archive_name="$current_date.tar.gz"
 
 # Generate MySQL dump
-mysqldump -u root -p"$password" --all-databases > "$dump_file"
-tar -czvf "$archive_name" "$dump_file"
-
-echo -e "${green}MySQL backup created: $archive_name${reset}\n"
-
+mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -czvf "$archive_name" backup.sql
+#echo -e "${green}MySQL backup created: $archive_name${reset}\n"
