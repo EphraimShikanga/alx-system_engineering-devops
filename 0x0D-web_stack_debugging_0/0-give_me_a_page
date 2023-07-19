@@ -8,7 +8,7 @@ docker run -p 8080:80 -d -it holbertonschool/265-0
 docker ps
 
 # Connect to the Docker container
-docker exec -it 5048125ecaa3 /bin/bash
+docker exec -it e8c5beb6948a  /bin/bash
 
 # Edit the Apache configuration file
 # vi /etc/apache2/sites-available/000-default.conf
